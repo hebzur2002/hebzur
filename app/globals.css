@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 10 14 18;
+  --surface: 18 23 31;
+  --line: 33 40 51;
+  --text: 228 231 235;
+  --muted: 139 149 165;
+  --teal: 94 234 212;
+  --violet: 167 139 250;
+}
+
+.light {
+  --bg: 247 248 250;
+  --surface: 255 255 255;
+  --line: 226 230 236;
+  --text: 26 29 35;
+  --muted: 100 112 125;
+  --teal: 13 148 136;
+  --violet: 124 58 237;
+}
+
+* {
+  border-color: rgb(var(--line));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--text));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: rgb(var(--teal) / 0.3);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgb(var(--teal));
+}
+
+@keyframes caret-blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.caret {
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes type-in {
+  from { width: 0; }
+  to { width: 100%; }
+}
+.type-line {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: type-in 1.4s steps(30, end) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type-line { animation: none; width: 100%; }
+  .caret { animation: none; }
+  * { scroll-behavior: auto !important; }
+}
